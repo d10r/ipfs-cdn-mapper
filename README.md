@@ -18,4 +18,3 @@ Note that currently ipfs supports only one ipns mapping per node. If you're not 
 A real CDN requires replication throughout many machines in different locations.
 This code's purpose is to easily create an organized directory structure and map the root to ipns in order to allow static URLs while keeping the possibility to add files to the directory tree. It doesn't deal with replication.
 However, because of content addressing, replication may be achieved even without people consciously contributing to this CDN. Whenever somebody adds the same file as contained in the root directory to their node, that node automatically becomes a mirror for that file. That's true even if the file is added with a different filename, it just needs to have the exact same content. That's the beauty of content addressing.
-(At least this is my understanding about how this works. Let me know if something isn't acurate.)
