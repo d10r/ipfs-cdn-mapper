@@ -19,6 +19,7 @@ cdn=$5
 
 [[ $cdn == "googleapis" ]] || usage_exit
 
+mkdir -p $localdir
 
 # possible optimization: keep connection open between downloads. Not sure how to do this. 
 # curl supports multiple remote file arguments, but how to map this to local files?
