@@ -1,9 +1,12 @@
-# ipfs-cdn
+# ipfs-cdn-mapper
 
-This is a simple collection of shell scripts which makes it easy to mirror conventional CDNs on ipfs.
-So far adapted only to googleapis CDN.
+This is a collection of simple shell scripts which make it easy to mirror conventional CDNs on ipfs.  
+It can import a given list of files to an IPFS node and replicate the directory stucture of the source CDN using IPNS.  
 
-Example deployment: https://ipfs.io/ipns/QmfJ4cFrE5NHwqqsAtwWW3uP2n1emVJQf6H6g71f7ZHs8T
+Since this was intended for experimentation, only a single source CDN is supported out of the box: googleapis.  
+But it should be pretty easy to replicate the workflow for arbitrary CDNs.
+
+Example deployment: https://ipfs.io/ipns/QmfJ4cFrE5NHwqqsAtwWW3uP2n1emVJQf6H6g71f7ZHs8T (update: this was shut down because of persisting high bandwidth usage of ~20Gb/day. I can't afford to offer actual CDN services for free. May become viabe once Filecoin is ready.)
 
 ## How to use
 * browse to https://developers.google.com/speed/libraries and choose a lib
@@ -15,8 +18,8 @@ Example deployment: https://ipfs.io/ipns/QmfJ4cFrE5NHwqqsAtwWW3uP2n1emVJQf6H6g71
 Note that currently ipfs supports only one ipns mapping per node. If you're not yet using ipns on your node, that's not a problem. Otherwise your exising mapping would be replaced.
 
 ## Replication
-A real CDN requires replication throughout many machines in different locations.
-This code's purpose is to easily create an organized directory structure and map the root to ipns in order to allow static URLs while keeping the possibility to add files to the directory tree. It doesn't deal with replication.
+A real CDN requires replication throughout many machines in different locations.  
+This code's purpose is to easily create an organized directory structure and map the root to ipns in order to allow static URLs while keeping the possibility to add files to the directory tree. It doesn't deal with replication.  
 However, because of content addressing of ipfs, replication may be achieved even without people consciously contributing to this CDN. Whenever somebody adds the same file as contained in the root directory to their node, that node automatically becomes a mirror for that file. That's true even if the file is added with a different filename, it just needs to have the exact same content. That's the beauty of content addressing.
 
 In order to check the replication status of a specific file, run the script `check_file_replication.sh`.
